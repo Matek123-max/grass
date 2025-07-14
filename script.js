@@ -1,14 +1,16 @@
 const WORDS = [
   "komputer", "telefon", "las", "lampa", "samolot", "rower", "pizza", "książka", "internet", "szkoła",
-  "pies", "kot", "kaktus", "herbata", "samochód", "drzwi", "okno", "but", "kapelusz", "zegar",
-  "słońce", "kawiarnia", "miód", "czekolada", "wiatr", "deszcz", "krzesło", "rakieta", "lód", "cukier",
-  "trawa", "kubek", "góra", "plaża", "słoik", "talerz", "nos", "ucho", "woda", "papier", "długopis",
-  "farba", "szalik", "telewizor", "pilot", "łóżko", "drzewo", "bałwan", "śnieg", "ptak", "dach"
+  "pies", "kot", "kaktus", "herbata", "samochód", "drzwi", "okno", "but", "kapelusz", "zegar"
 ];
 
 let playerCount = 0;
 let currentPlayer = 0;
 let wordsForPlayers = [];
+
+function showScreen(screenId) {
+  document.querySelectorAll(".screen").forEach(div => div.style.display = "none");
+  document.getElementById(screenId).style.display = "block";
+}
 
 function startGame(count) {
   playerCount = count;
@@ -22,39 +24,30 @@ function startGame(count) {
     wordsForPlayers.push(i === impostorIndex ? "IMPOSTOR" : commonWord);
   }
 
-  document.getElementById("start").style.display = "none";
   showPlayerScreen();
 }
 
 function showPlayerScreen() {
-  document.getElementById("screen").style.display = "block";
-  document.getElementById("transition").style.display = "none";
-  document.getElementById("end").style.display = "none";
-
   document.getElementById("playerLabel").textContent = `Gracz ${currentPlayer + 1}, to Twoja tura`;
   document.getElementById("wordDisplay").textContent = wordsForPlayers[currentPlayer];
+  showScreen("wordScreen");
 }
 
 function goToTransition() {
-  document.getElementById("screen").style.display = "none";
-  document.getElementById("transition").style.display = "block";
+  const nextPlayerNum = currentPlayer + 2;
+  const message = (currentPlayer + 1 < playerCount)
+    ? `Przekaż urządzenie Graczowi ${nextPlayerNum}`
+    : `Wszyscy gracze widzieli swoje słowa`;
 
-  if (currentPlayer + 1 < playerCount) {
-    document.getElementById("nextPlayerText").textContent = `Przekaż urządzenie Graczowi ${currentPlayer + 2}`;
-  } else {
-    document.getElementById("nextPlayerText").textContent = `Wszyscy gracze widzieli swoje słowa`;
-  }
+  document.getElementById("nextPlayerText").textContent = message;
+  showScreen("transitionScreen");
 }
 
 function nextPlayer() {
   currentPlayer++;
-
   if (currentPlayer < playerCount) {
     showPlayerScreen();
   } else {
-    document.getElementById("screen").style.display = "none";
-    document.getElementById("transition").style.display = "none";
-    document.getElementById("end").style.display = "block";
+    showScreen("endScreen");
   }
 }
-
