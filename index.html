@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gra Impostor (Offline)</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #111;
+      color: #eee;
+      text-align: center;
+      padding-top: 60px;
+    }
+
+    button {
+      padding: 10px 25px;
+      font-size: 18px;
+      margin-top: 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .big {
+      font-size: 36px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gra Impostor (Offline)</h1>
+
+  <!-- Start -->
+  <div id="start" class="screen" style="display: block;">
+    <p>Wybierz liczbę graczy:</p>
+    <button onclick="startGame(4)">4 graczy</button>
+    <button onclick="startGame(5)">5 graczy</button>
+  </div>
+
+  <!-- Pokaz słowa -->
+  <div id="wordScreen" class="screen">
+    <h2 id="playerLabel"></h2>
+    <p id="wordDisplay" class="big"></p>
+    <button onclick="goToTransition()">Gotowe</button>
+  </div>
+
+  <!-- Ekran przejściowy -->
+  <div id="transitionScreen" class="screen">
+    <h2 id="nextPlayerText"></h2>
+    <button onclick="nextPlayer()">Dalej</button>
+  </div>
+
+  <!-- Koniec gry -->
+  <div id="endScreen" class="screen">
+    <h2>Wszyscy gracze zobaczyli swoje słowa!</h2>
+    <p>Rozpocznijcie rozmowę i spróbujcie znaleźć IMPOSTORA.</p>
+    <button onclick="location.reload()">Zagraj ponownie</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
