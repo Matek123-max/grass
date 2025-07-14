@@ -27,7 +27,7 @@
       background-color: #555;
     }
 
-    #screen, #transition, #end {
+    .screen {
       display: none;
     }
 
@@ -40,26 +40,30 @@
 <body>
   <h1>Gra Impostor (Offline)</h1>
 
-  <div id="start">
+  <!-- Start -->
+  <div id="start" class="screen" style="display: block;">
     <p>Wybierz liczbę graczy:</p>
     <button onclick="startGame(4)">4 graczy</button>
     <button onclick="startGame(5)">5 graczy</button>
   </div>
 
-  <div id="screen">
+  <!-- Pokaz słowa -->
+  <div id="wordScreen" class="screen">
     <h2 id="playerLabel"></h2>
     <p id="wordDisplay" class="big"></p>
     <button onclick="goToTransition()">Gotowe</button>
   </div>
 
-  <div id="transition">
+  <!-- Ekran przejściowy -->
+  <div id="transitionScreen" class="screen">
     <h2 id="nextPlayerText"></h2>
     <button onclick="nextPlayer()">Dalej</button>
   </div>
 
-  <div id="end">
+  <!-- Koniec gry -->
+  <div id="endScreen" class="screen">
     <h2>Wszyscy gracze zobaczyli swoje słowa!</h2>
-    <p>Możecie teraz rozpocząć debatę i próbować znaleźć impostora.</p>
+    <p>Rozpocznijcie rozmowę i spróbujcie znaleźć IMPOSTORA.</p>
     <button onclick="location.reload()">Zagraj ponownie</button>
   </div>
 
