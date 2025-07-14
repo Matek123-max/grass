@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Gra Impostor (Offline)</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    #screen { display: none; }
+    button { padding: 10px 20px; font-size: 18px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Gra Impostor (Offline)</h1>
+  <div id="start">
+    <p>Wybierz liczbę graczy:</p>
+    <button onclick="startGame(4)">4 graczy</button>
+    <button onclick="startGame(5)">5 graczy</button>
+  </div>
+
+  <div id="screen">
+    <h2 id="playerLabel"></h2>
+    <p id="wordDisplay" style="font-size: 32px; font-weight: bold;"></p>
+    <button onclick="nextPlayer()">Gotowe</button>
+  </div>
+
+  <div id="end" style="display: none;">
+    <h2>Wszyscy gracze zobaczyli swoje słowa!</h2>
+    <p>Możecie teraz rozpocząć debatę i próbować znaleźć impostora.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
