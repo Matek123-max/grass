@@ -29,6 +29,7 @@ function startGame(count) {
 function showPlayerScreen() {
   document.getElementById("screen").style.display = "block";
   document.getElementById("transition").style.display = "none";
+  document.getElementById("end").style.display = "none";
 
   document.getElementById("playerLabel").textContent = `Gracz ${currentPlayer + 1}, to Twoja tura`;
   document.getElementById("wordDisplay").textContent = wordsForPlayers[currentPlayer];
@@ -38,17 +39,20 @@ function goToTransition() {
   document.getElementById("screen").style.display = "none";
   document.getElementById("transition").style.display = "block";
 
-  const nextPlayer = currentPlayer + 2; // bo currentPlayer jest 0-indeksowany
-  if (nextPlayer <= playerCount) {
-    document.getElementById("nextPlayerText").textContent = `Przekaż urządzenie Graczowi ${nextPlayer}`;
+  if (currentPlayer + 1 < playerCount) {
+    document.getElementById("nextPlayerText").textContent = `Przekaż urządzenie Graczowi ${currentPlayer + 2}`;
+  } else {
+    document.getElementById("nextPlayerText").textContent = `Wszyscy gracze widzieli swoje słowa`;
   }
 }
 
 function nextPlayer() {
   currentPlayer++;
+
   if (currentPlayer < playerCount) {
     showPlayerScreen();
   } else {
+    document.getElementById("screen").style.display = "none";
     document.getElementById("transition").style.display = "none";
     document.getElementById("end").style.display = "block";
   }
